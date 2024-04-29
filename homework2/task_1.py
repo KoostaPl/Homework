@@ -9,5 +9,5 @@ unique_words = set()
 for word in words:
     word.strip(',.!?')
     unique_words.add(word)
-num_unique_words = (len(unique_words))
+num_unique_words = len(unique_words)
 print(f"Количество уникальных слов в тексте: {num_unique_words}")

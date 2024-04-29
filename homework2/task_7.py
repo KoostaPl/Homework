@@ -2,15 +2,18 @@
 # следующим образом: если символ X повторяется N раз, то итоговая строка должна содержать XN.
 
 s = input("Введите строку: ")
-s1 = ""
-a = 0
-b = s[0]
-for i in s:
-    if i == b:
-        a += 1
+result = ""
+counter = 0
+current_char = s[0]
+
+for char in s:
+    if char == current_char:
+        counter += 1
     else:
-        s1 += b + str(a)
-        a = 1
-        b = i
-s1 += b + str(a)
-print(s1)
+        result += current_char + str(counter)
+        counter = 1
+        current_char = char
+
+result += current_char + str(counter)
+
+print(result)

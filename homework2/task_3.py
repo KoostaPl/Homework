@@ -4,27 +4,16 @@
 #3. Числа из обоих наборов, за исключением чисел, найденных в пункте 1.
 
 
-first_numbers = input("Введите список чисел через пробел: ")
-second_numbers = input("Введите список чисел через пробел: ")
-first_numbers_list = first_numbers.split()
-second_numbers_list = second_numbers.split()
-bothnumbers = []
-firsnotinsecond = set()
-secondnotinfirst = set()
-notbothnumbers = set()
+first_numbers = set(input("Введите числа первого набора через пробел: ").split())
+second_numbers = set(input("Введите числа второго набора через пробел: ").split())
 
-for num in first_numbers_list:
-    for num1 in second_numbers_list:
-        if num == num1:
-            bothnumbers.append(num1)       
-        if num not in second_numbers_list:
-            firsnotinsecond.add(num)
-            notbothnumbers.add(num)
-        if num1 not in first_numbers_list:
-            secondnotinfirst.add(num1) 
-            notbothnumbers.add(num1)
+both_numbers = first_numbers.intersection(second_numbers)
+print("Числа, которые присутствуют в обоих наборах одновременно:", ", ".join(both_numbers))
 
-print("Повторяющиеся цифры обоих списков:", ' '.join(bothnumbers))
-print("Цифры из первого списка отсутствующие во втором списке:", ' '.join(firsnotinsecond))
-print("Цифры из второго списка отсутствующие в первом списке:", ' '.join(secondnotinfirst))
-print("Числа из обоих наборов, за исключением чисел, найденных в пункте 1:", ' '.join(notbothnumbers))
+first_not_in_second = first_numbers.difference(second_numbers)
+second_not_in_first = second_numbers.difference(first_numbers)
+print("Числа из первого набора, которые отсутствуют во втором:", ", ".join(first_not_in_second))
+print("Числа из второго набора, которые отсутствуют в первом:", ", ".join(second_not_in_first))
+
+not_both_numbers = first_numbers.symmetric_difference(second_numbers) - both_numbers
+print("Числа из обоих наборов, за исключением чисел, найденных в пункте 1:", ", ".join(not_both_numbers))
