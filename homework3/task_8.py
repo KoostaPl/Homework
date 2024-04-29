@@ -2,5 +2,11 @@
 
 
 L = input("Введите список чисел через пробел: ").split()
-nums = list(map(int, L))
-print(sorted(nums))
+L = [int(num) for num in L]
+
+n = len(L)
+for i in range(n):
+    for j in range(0, n - i - 1):
+        if L[j] > L[j + 1]:
+            L[j], L[j + 1] = L[j + 1], L[j]
+print(f"Список по возрастанию: {L}")

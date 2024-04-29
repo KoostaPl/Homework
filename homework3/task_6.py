@@ -2,14 +2,16 @@
 # по возрастанию. Напишите программу, которая осуществляет поиск числа N в
 # списке L и выводит его индекс, если число найдено, или -1, если числа в списке нет.
 
-import random
 user_input = input("Введите числа, разделенные пробелом: ").split()
-numbers = []
-for i in user_input:
-    numbers.append(int(i))
-numbers.sort()
+numbers = [int(i) for i in user_input]
 num = int(input("Введите число для нахождения индекса: "))
-if num in numbers:
-    print(f"Индекс искомого числа из списка: {numbers.index(num)}")
-else:
-    print(-1)
+
+numbers.sort()  # Сортировка чисел по возрастанию
+# print(f"Числа сортированные по возрастанию {numbers}")
+index = 0
+for n in numbers:
+    if n == num:
+        index = numbers.index(n)
+        break
+
+print(f"Индекс искомого числа из списка: {index}")

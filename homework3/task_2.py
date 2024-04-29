@@ -7,5 +7,11 @@ i = 2
 while i <= num:
     if num % i == 0:
         count += 1
+        if count > 2:
+            break
     i += 1
-print("Простое число" if count == 2 else "Составное число")
+
+if count == 2:
+    print("Простое число")
+else:
+    print("Составное число")
