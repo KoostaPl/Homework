@@ -1,0 +1,4 @@
+2024-05-24 14:10:46.541447 - example_function - args: (1, 2), kwargs: {}
+2024-05-24 14:10:46.542445 - example_function - args: (1, 2), kwargs: {'c': 3}
+2024-05-24 14:29:54.983749 - example_function - args: (1, 2), kwargs: {}
+2024-05-24 14:29:54.985745 - example_function - args: (1, 2), kwargs: {'c': 3}
