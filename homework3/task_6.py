@@ -6,14 +6,12 @@ user_input = input("Введите числа, разделенные пробе
 numbers = [int(i) for i in user_input]
 num = int(input("Введите число для нахождения индекса: "))
 
-# Предполагается, что числа уже отсортированы
-# Если нет, нужно раскомментить следующую строку
-# numbers.sort()  # Сортировка чисел по возрастанию
-
-index = -1 
-for i, n in enumerate(numbers):
+numbers.sort()  # Сортировка чисел по возрастанию
+# print(f"Числа сортированные по возрастанию {numbers}")
+index = 0
+for n in numbers:
     if n == num:
-        index = i
+        index = numbers.index(n)
         break
 
 print(f"Индекс искомого числа из списка: {index}")

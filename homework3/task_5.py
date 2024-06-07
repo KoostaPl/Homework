@@ -10,7 +10,7 @@ length = int(input('Введите длину пароля: '))
 lowercase_letters = string.ascii_lowercase
 uppercase_letters = string.ascii_uppercase
 digits = string.digits
-special_characters = string.punctuation
+special_characters = ',.*^_()[]{}?!@'
 
 all_characters = lowercase_letters + uppercase_letters + digits + special_characters
 
