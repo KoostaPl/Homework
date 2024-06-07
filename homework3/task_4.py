@@ -24,7 +24,6 @@ for i in range(M):
         value = matrix1[i][j] + matrix2[i][j]
         row.append(value)
     sum_matrix.append(row)
-    
 print(f"Значение первой матрицы: {matrix1}")
 print(f"Значение второй матрицы: {matrix2}")
 print(f"Сумма матриц равняется: {sum_matrix}")

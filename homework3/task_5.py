@@ -3,6 +3,22 @@
 # В пароле должны присутствовать как минимум одна заглавная буква, одна маленькая буква, одна цифра, и один специальный символ.
 
 import random
-lenght = int(input('Enter the length of your password: '))
-random_stirng = ''.join(chr(random.randint(33,126)) for i in range(lenght))
-print(f"Your generated pawword is: {random_stirng}")
+import string
+
+length = int(input('Введите длину пароля: '))
+
+lowercase_letters = string.ascii_lowercase
+uppercase_letters = string.ascii_uppercase
+digits = string.digits
+special_characters = string.punctuation
+
+all_characters = lowercase_letters + uppercase_letters + digits + special_characters
+
+password = random.choice(lowercase_letters) + random.choice(uppercase_letters) + random.choice(digits) + random.choice(special_characters)
+password += ''.join(random.choice(all_characters) for _ in range(length - 4))
+
+password_list = list(password)
+random.shuffle(password_list)
+password = ''.join(password_list)
+
+print(f"Сгенерированный пароль: {password}")   

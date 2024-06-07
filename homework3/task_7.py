@@ -1,9 +1,25 @@
 # Решите предыдущую задачу не используя проход по списку в цикле.
 
 
-user_input_nums = sorted(list(map(int, input("Введите числа, разделенные пробелом: ").split())))
+def binary_search(numbers, num):
+    low = 0
+    high = len(numbers) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+        if numbers[mid] == num:
+            return mid
+        elif numbers[mid] < num:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1
+
+user_input = input("Введите числа, разделенные пробелом: ").split()
+numbers = [int(i) for i in user_input]
+
 num = int(input("Введите число для нахождения индекса: "))
-if num in user_input_nums:
-    print(f"Индексом искомого числа {num} является {user_input_nums.index(num)}")
-else:
-    print(-1)
+numbers.sort()
+index = binary_search(numbers, num)
+print(f"Индекс искомого числа из списка: {index}")
