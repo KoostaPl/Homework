@@ -2,7 +2,7 @@ def flatten_list(lst):
     i = 0
     while i < len(lst):
         if isinstance(lst[i], list):
-            lst[i : i + 1] = lst[i]
+            lst[i:i + 1] = lst[i]
         else:
             i += 1
     for i in range(len(lst)):

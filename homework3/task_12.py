@@ -46,13 +46,13 @@ for _ in range(M):
     for y in range(size):
         for x in range(size):
             c = field[y][x]
-            live_neighbors = 0
+            lve_nr = 0
             for neighbor_x, neighbor_y in neighbors_xy(x, y):
-                live_neighbors += 1 if is_live(field, neighbor_x, neighbor_y) else 0
+                lve_nr += 1 if is_live(field, neighbor_x, neighbor_y) else 0
             if c == dead:
-                buffer[y][x] = live if live_neighbors == 3 else dead
+                buffer[y][x] = live if lve_nr == 3 else dead
             else:
-                buffer[y][x] = live if live_neighbors in (2, 3) else dead
+                buffer[y][x] = live if lve_nr in (2, 3) else dead
 
     if field == buffer:
         print("done")
