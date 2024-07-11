@@ -1,4 +1,3 @@
-
 import random
 
 N = random.randint(0, 100)
