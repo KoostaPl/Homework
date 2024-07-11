@@ -1,6 +1,7 @@
 import datetime
 import functools
 
+
 def log_calls(filename):
     def decorator(func):
         @functools.wraps(func)
