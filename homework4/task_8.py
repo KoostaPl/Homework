@@ -3,7 +3,7 @@ def merge_sort(arr):
     # то он уже отсортирован, поэтому возвращаем его
     if len(arr) <= 1:
         return arr
-    
+
     # Шаг 2: Разделяем массив на две половины
     mid = len(arr) // 2
     left_half = arr[:mid]
@@ -16,13 +16,14 @@ def merge_sort(arr):
     # Шаг 3: Объединяем две отсортированные половины
     return merge(left_half, right_half)
 
+
 def merge(left, right):
-    result = []  
-    i = j = 0  
+    result = []
+    i = j = 0
 
     # Шаг 4: Слияние двух отсортированных списков
     while i < len(left) and j < len(right):
-       
+
         if left[i] < right[j]:
             result.append(left[i])
             i += 1
@@ -41,6 +42,7 @@ def merge(left, right):
         j += 1
 
     return result
+
 
 # Пример использования
 arr = [12, 11, 13, 5, 6, 7]

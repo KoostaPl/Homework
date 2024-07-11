@@ -26,7 +26,7 @@ for number in numbers_list:
     else:
         repeated_numbers.append(number)
 
-    if '.' in number:
+    if "." in number:
         float_numbers.append(number)
     else:
         if int(number) % 2 == 0:
@@ -40,12 +40,12 @@ for number in numbers_list:
     if float(number) % 5 == 0:
         multiples_of_5.append(number)
 
-print("Уникальные числа:", ' '.join(unique_numbers))
-print("Повторяющиеся числа:", ' '.join(repeated_numbers))
-print("Четные числа:", ' '.join(even_numbers))
-print("Нечетные числа:", ' '.join(odd_numbers))
-print("Отрицательные числа:", ' '.join(negative_numbers))
-print("Числа с плавающей точкой:", ' '.join(float_numbers))
+print("Уникальные числа:", " ".join(unique_numbers))
+print("Повторяющиеся числа:", " ".join(repeated_numbers))
+print("Четные числа:", " ".join(even_numbers))
+print("Нечетные числа:", " ".join(odd_numbers))
+print("Отрицательные числа:", " ".join(negative_numbers))
+print("Числа с плавающей точкой:", " ".join(float_numbers))
 print("Сумма всех чисел, кратных 5:", sum(map(float, multiples_of_5)))
 print("Максимальное число из списка:", max(map(float, numbers_list)))
 print("Минимальное число из списка:", min(map(float, numbers_list)))

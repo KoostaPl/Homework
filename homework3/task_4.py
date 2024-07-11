@@ -4,6 +4,7 @@ N = int(input("Введите значение количества столбц
 matrix1 = []
 matrix2 = []
 
+
 def matrix(matrix):
     for i in range(M):
         row = []
@@ -12,8 +13,10 @@ def matrix(matrix):
             row.append(value)
         matrix.append(row)
 
+
 matrix(matrix1)
 matrix(matrix2)
+
 
 def sum_of_matrix(matrix1, matrix2):
     sum_matrix = []
@@ -24,6 +27,7 @@ def sum_of_matrix(matrix1, matrix2):
             row.append(value)
         sum_matrix.append(row)
     return sum_matrix
+
 
 result = sum_of_matrix(matrix1, matrix2)
 print(f"Значение первой матрицы: {matrix1}")

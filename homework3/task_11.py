@@ -8,9 +8,9 @@ while True:
     print("3. Просмотреть все контакты")
     print("4. Просмотреть информацию о контакте")
     print("5. Выйти из программы")
-    
+
     choice = input("Выберите действие (введите номер): ")
-    
+
     if choice == "1":
         name = input("Введите имя нового контакта: ")
         if name in phone_book:
@@ -20,7 +20,7 @@ while True:
             mail = input("Введите почту: ")
             phone_book[name] = {"phone": phone, "mail": mail}
             print("Контакт успешно добавлен")
-    
+
     elif choice == "2":
         name_to_remove = input("Введите имя контакта для удаления: ")
         if name_to_remove in phone_book:
@@ -28,7 +28,7 @@ while True:
             print("Контакт успешно удалён.")
         else:
             print("Контакт не найден")
-            
+
     elif choice == "3":
         if phone_book:
             print("\n\tСписок всех контактов: ")
@@ -38,16 +38,20 @@ while True:
             print("Телефонная книга пуста.")
 
     elif choice == "4":
-        contact_to_view = input("Введите имя контакта о котором хотите узнать информацию: ")
+        contact_to_view = input(
+            "Введите имя контакта о котором хотите узнать информацию: "
+        )
         if contact_to_view in phone_book:
             contact_info = phone_book[contact_to_view]
-            print(f"Имя: {contact_to_view}; Телефон: {contact_info['phone']}; Почта: {contact_info['mail']}")
+            print(
+                f"Имя: {contact_to_view}; Телефон: {contact_info['phone']}; Почта: {contact_info['mail']}"
+            )
         else:
-            print('Контакт не найден')
+            print("Контакт не найден")
 
     elif choice == "5":
         print("Выход из программы.")
         break
-    
+
     else:
         print("Неверный ввод. Пожалуйста, введите число от 1 до 5.")

@@ -10,12 +10,15 @@ def cache(func):
             result = func(*args, **kwargs)
             cache_storage[key] = result
             return result
+
     return wrapper
+
 
 @cache
 def number_pow(n, x):
     print(f"Число {n} в степени {x} равняется: ")
-    return n ** x
+    return n**x
+
 
 print(number_pow(2, 5))
 print(number_pow(3, 8))

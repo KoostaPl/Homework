@@ -3,5 +3,5 @@
 # используйте любой символ.
 
 L = int(input("Введите высоту пирамиды: "))
-for i in range(1, L+1):
-    print(' ' * (L - i), "* " * i)
+for i in range(1, L + 1):
+    print(" " * (L - i), "* " * i)
