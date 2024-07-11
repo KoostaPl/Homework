@@ -4,6 +4,7 @@ class Node:
         self.next = None
         self.prev = None
 
+
 class LinkedList:
     def __init__(self):
         self._head_node = None
@@ -103,6 +104,7 @@ class LinkedList:
 
     def __len__(self):
         return self._size
+
 
 # Пример использования
 linked_list = LinkedList()

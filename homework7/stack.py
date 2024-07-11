@@ -3,6 +3,7 @@ class Node:
         self.data = data
         self.next = None
 
+
 class StackIterator:
     def __init__(self, top_node):
         self.current_node = top_node
@@ -16,6 +17,7 @@ class StackIterator:
         data = self.current_node.data
         self.current_node = self.current_node.next
         return data
+
 
 class Stack:
     def __init__(self):
@@ -60,6 +62,7 @@ class Stack:
     def __iter__(self):
         return StackIterator(self._top_node)
 
+
 stack = Stack()
 stack.push(10)
 stack.push(20)
@@ -68,5 +71,3 @@ stack.pop()
 print("Итерация по стеку:")
 for item in stack:
     print(item)
-
-

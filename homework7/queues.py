@@ -3,6 +3,7 @@ class Node:
         self.data = data
         self.next = None
 
+
 class Queue:
     def __init__(self):
         self._first_node = None
@@ -26,7 +27,7 @@ class Queue:
         self._first_node = self._first_node.next
         if self._first_node is None:
             self._first_node = None
-        self._size -=1
+        self._size -= 1
         print(f"Элемент {dequeued_node.data} удалён из очереди.")
         return dequeued_node.data
 
@@ -37,10 +38,10 @@ class Queue:
 
     def is_empty(self):
         return self._first_node is None
-    
+
     def size(self):
         return self._size
-    
+
     def display(self):
         current = self._first_node
         elements = []
@@ -48,7 +49,8 @@ class Queue:
             elements.append(current.data)
             current = current.next
         print("Очередь: " + " -> ".join(map(str, elements)))
-    
+
+
 queue = Queue()
 queue.enqueue(10)
 queue.enqueue(20)
