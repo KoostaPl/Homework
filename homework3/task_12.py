@@ -48,7 +48,9 @@ for _ in range(M):
             c = field[y][x]
             live_neighbors = 0
             for neighbor_x, neighbor_y in neighbors_xy(x, y):
-                live_neighbors += 1 if is_live(field, neighbor_x, neighbor_y) else 0
+                live_neighbors += (
+                    1 if is_live(field, neighbor_x, neighbor_y) else 0
+                )
             if c == dead:
                 buffer[y][x] = live if live_neighbors == 3 else dead
             else:

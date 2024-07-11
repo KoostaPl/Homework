@@ -1,6 +1,3 @@
-# Пользователь вводит положительное целое число N. Напишите программу, которая генерирует случайный пароль длины N, который содержит символы в
-# верхнем и нижнем регистрах, числа, и специальные символы: , . * ^ _ ( ) [ ] { } ? ! @.
-# В пароле должны присутствовать как минимум одна заглавная буква, одна маленькая буква, одна цифра, и один специальный символ.
 
 import random
 import string
@@ -12,7 +9,9 @@ uppercase_letters = string.ascii_uppercase
 digits = string.digits
 special_characters = ",.*^_()[]{}?!@"
 
-all_characters = lowercase_letters + uppercase_letters + digits + special_characters
+all_characters = (
+    lowercase_letters + uppercase_letters + digits + special_characters
+)
 
 password = (
     random.choice(lowercase_letters)

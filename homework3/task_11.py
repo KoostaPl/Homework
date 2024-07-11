@@ -44,7 +44,8 @@ while True:
         if contact_to_view in phone_book:
             contact_info = phone_book[contact_to_view]
             print(
-                f"Имя: {contact_to_view}; Телефон: {contact_info['phone']}; Почта: {contact_info['mail']}"
+                f"Имя: {contact_to_view}; Телефон: {contact_info['phone']}; "
+                f"Почта: {contact_info['mail']}"
             )
         else:
             print("Контакт не найден")

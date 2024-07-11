@@ -8,14 +8,13 @@ def log_calls(filename):
         def wrapper(*args, **kwargs):
             current_time = datetime.datetime.now()
             log_entry = (
-                f"{current_time} - {func.__name__} - args: {args}, kwargs: {kwargs}\n"
+                f"{current_time} - {func.__name__} - args: {args}, "
+                f"kwargs: {kwargs}\n"
             )
             with open(filename, "a") as log_file:
                 log_file.write(log_entry)
             return func(*args, **kwargs)
-
         return wrapper
-
     return decorator
 
 

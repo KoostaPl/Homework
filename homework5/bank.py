@@ -25,26 +25,32 @@ class Account:
             raise ValueError("Сумма должна быть положительной.")
         self.balance += amount
         print(
-            f"Счет в {self.currency} пополнен на {amount} {self.currency}. Текущий баланс: {self.balance} {self.currency}"
+            f"Счет в {self.currency} пополнен на {amount} {self.currency}. "
+            f"Текущий баланс: {self.balance} {self.currency}"
         )
         print("************************************************")
         self.transaction_history.append(
-            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Пополнение\переводы: +{amount} {self.currency}, текущий баланс {self.balance} {self.currency}"
+            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} "
+            f"Пополнение\\переводы: +{amount} {self.currency}, "
+            f"текущий баланс {self.balance} {self.currency}"
         )
 
     def withdraw(self, amount):
-        if 0 >= amount:
+        if amount <= 0:
             raise ValueError("Сумма должна быть положительной.")
         if amount > self.balance:
             raise InsufficientFunds("На счёте недостаточно средств.")
         self.balance -= amount
         print("************************************************")
         print(
-            f"Со счета в {self.currency} снято {amount} {self.currency}. Текущий баланс: {self.balance} {self.currency}"
+            f"Со счета в {self.currency} снято {amount} {self.currency}. "
+            f"Текущий баланс: {self.balance} {self.currency}"
         )
         print("************************************************")
         self.transaction_history.append(
-            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Снятие\переводы: -{amount} {self.currency}, текущий баланс {self.balance} {self.currency}"
+            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} "
+            f"Снятие\\переводы: -{amount} {self.currency}, "
+            f"текущий баланс {self.balance} {self.currency}"
         )
 
     def get_transaction_history(self):
@@ -80,7 +86,7 @@ class Client:
 
     def close_account(self, currency):
         if currency not in self.accounts:
-            raise AccountNotFound("Счёт в этой валюте не был найден.\n")
+            raise AccountNotFound("Счёт в этой валюте не был найден.")
         del self.accounts[currency]
         print(f"Счет в валюте {currency} закрыт для клиента {self.name}")
         print("************************************************")
@@ -91,7 +97,9 @@ class Client:
         return self.accounts[currency]
 
     def generate_statement(self):
-        statement = f"Выписка по счетам клиента {self.name} (ID: {self.client_id}):\n"
+        statement = (
+            f"Выписка по счетам клиента {self.name} (ID: {self.client_id}):\n"
+        )
         total_balance = 0.0
         for currency, account in self.accounts.items():
             statement += f"Валюта: {currency}, Баланс: {account.balance}\n"
@@ -104,7 +112,10 @@ class Client:
         print(f"Выписка сохранена в {file_name}")
 
     def get_transaction_history(self):
-        history = f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} История операций для клиента {self.name} (ID: {self.client_id}):\n"
+        history = (
+            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} "
+            f"История операций клиента {self.name} (ID: {self.client_id}):\n"
+        )
         for currency, account in self.accounts.items():
             print("*********************************************")
             history += f"\nСчёт в валюте {currency}:\n"
@@ -161,20 +172,17 @@ class Bank:
 
         if from_account.currency != to_account.currency:
             raise CurrencyMismatch(
-                "Переводы между разными валютами запрещены.\n************************************************"
+                "Переводы между разными валютами запрещены."
             )
 
         from_account.withdraw(amount)
         to_account.deposit(amount)
+        print("\n************************************************")
         print(
-            "\n****************************************************************************"
+            f"Перевод {amount} {from_currency} со счета {from_client.name}"
+            f"в {from_currency} на счет {to_client.name} в {to_currency}"
         )
-        print(
-            f"Переведено {amount} {from_currency} из счета клиента {from_client.name} в {from_currency} в счет клиента {to_client.name} в {to_currency}"
-        )
-        print(
-            "\n****************************************************************************"
-        )
+        print("************************************************")
 
     def save_state(self, filename="bank_state.json"):
         with open(filename, "w", encoding="utf-8") as f:
@@ -270,7 +278,9 @@ def main():
                     print("************************************************")
                     currency = input("Введите валюту счета: ")
                     print("************************************************")
-                    amount = float(input("Введите сумму для пополнения счёта: "))
+                    amount = float(
+                        input("Введите сумму для пополнения счёта: ")
+                    )
                     print("************************************************")
                     try:
                         account = client.get_account(currency)
@@ -282,11 +292,17 @@ def main():
                     print("************************************************")
                     currency = input("Введите валюту счета: ")
                     print("************************************************")
-                    amount = float(input("Введите сумму для снятия со счёта: "))
+                    amount = float(
+                        input("Введите сумму для снятия со счёта: ")
+                    )
                     try:
                         account = client.get_account(currency)
                         account.withdraw(amount)
-                    except (AccountNotFound, InsufficientFunds, ValueError) as e:
+                    except (
+                        AccountNotFound,
+                        InsufficientFunds,
+                        ValueError,
+                    ) as e:
                         print(e)
 
                 elif action == "5":
@@ -294,13 +310,21 @@ def main():
                     from_currency = input(
                         "Введите валюту счета, с которого переводите: "
                     )
-                    to_client_id = input("Введите ID клиента, на который переводите: ")
-                    to_currency = input("Введите валюту счета, на который переводите: ")
+                    to_client_id = input(
+                        "Введите ID клиента, на который переводите: "
+                    )
+                    to_currency = input(
+                        "Введите валюту счета, на который переводите: "
+                    )
                     amount = float(input("Введите сумму для перевода: "))
                     print("************************************************")
                     try:
                         bank.transfer(
-                            client_id, from_currency, to_client_id, to_currency, amount
+                            client_id,
+                            from_currency,
+                            to_client_id,
+                            to_currency,
+                            amount,
                         )
                     except (
                         ValueError,
@@ -330,7 +354,7 @@ def main():
         elif choice == "3":
             bank.save_state()
             print("************************************************")
-            print("Вы успешно вышли из программы. Хорошего дня!.")
+            print("Вы успешно вышли из программы. Хорошего дня!")
             print("************************************************")
             break
 
