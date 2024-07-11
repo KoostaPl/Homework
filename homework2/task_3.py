@@ -4,12 +4,8 @@
 # 3. Числа из обоих наборов, за исключением чисел, найденных в пункте 1.
 
 
-first_numbers = set(
-    input("Введите числа первого набора через пробел: ").split()
-)
-second_numbers = set(
-    input("Введите числа второго набора через пробел: ").split()
-)
+first_numbers = set(input("Введите числа первого набора через пробел: ").split())
+second_numbers = set(input("Введите числа второго набора через пробел: ").split())
 
 both_numbers = first_numbers.intersection(second_numbers)
 print(
@@ -28,9 +24,7 @@ print(
     ", ".join(second_not_in_first),
 )
 
-not_both_numbers = (
-    first_numbers.symmetric_difference(second_numbers) - both_numbers
-)
+not_both_numbers = first_numbers.symmetric_difference(second_numbers) - both_numbers
 print(
     "Числа из обоих наборов, за исключением чисел, найденных в пункте 1:",
     ", ".join(not_both_numbers),

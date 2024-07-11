@@ -1,4 +1,3 @@
-
 import random
 import string
 
@@ -9,9 +8,7 @@ uppercase_letters = string.ascii_uppercase
 digits = string.digits
 special_characters = ",.*^_()[]{}?!@"
 
-all_characters = (
-    lowercase_letters + uppercase_letters + digits + special_characters
-)
+all_characters = lowercase_letters + uppercase_letters + digits + special_characters
 
 password = (
     random.choice(lowercase_letters)

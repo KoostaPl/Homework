@@ -97,9 +97,7 @@ class Client:
         return self.accounts[currency]
 
     def generate_statement(self):
-        statement = (
-            f"Выписка по счетам клиента {self.name} (ID: {self.client_id}):\n"
-        )
+        statement = f"Выписка по счетам клиента {self.name} (ID: {self.client_id}):\n"
         total_balance = 0.0
         for currency, account in self.accounts.items():
             statement += f"Валюта: {currency}, Баланс: {account.balance}\n"
@@ -171,9 +169,7 @@ class Bank:
         to_account = to_client.get_account(to_currency)
 
         if from_account.currency != to_account.currency:
-            raise CurrencyMismatch(
-                "Переводы между разными валютами запрещены."
-            )
+            raise CurrencyMismatch("Переводы между разными валютами запрещены.")
 
         from_account.withdraw(amount)
         to_account.deposit(amount)
@@ -278,9 +274,7 @@ def main():
                     print("************************************************")
                     currency = input("Введите валюту счета: ")
                     print("************************************************")
-                    amount = float(
-                        input("Введите сумму для пополнения счёта: ")
-                    )
+                    amount = float(input("Введите сумму для пополнения счёта: "))
                     print("************************************************")
                     try:
                         account = client.get_account(currency)
@@ -292,9 +286,7 @@ def main():
                     print("************************************************")
                     currency = input("Введите валюту счета: ")
                     print("************************************************")
-                    amount = float(
-                        input("Введите сумму для снятия со счёта: ")
-                    )
+                    amount = float(input("Введите сумму для снятия со счёта: "))
                     try:
                         account = client.get_account(currency)
                         account.withdraw(amount)
@@ -310,12 +302,8 @@ def main():
                     from_currency = input(
                         "Введите валюту счета, с которого переводите: "
                     )
-                    to_client_id = input(
-                        "Введите ID клиента, на который переводите: "
-                    )
-                    to_currency = input(
-                        "Введите валюту счета, на который переводите: "
-                    )
+                    to_client_id = input("Введите ID клиента, на который переводите: ")
+                    to_currency = input("Введите валюту счета, на который переводите: ")
                     amount = float(input("Введите сумму для перевода: "))
                     print("************************************************")
                     try:

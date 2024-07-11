@@ -14,7 +14,9 @@ def log_calls(filename):
             with open(filename, "a") as log_file:
                 log_file.write(log_entry)
             return func(*args, **kwargs)
+
         return wrapper
+
     return decorator
 
 
