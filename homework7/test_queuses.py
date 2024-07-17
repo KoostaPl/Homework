@@ -16,7 +16,7 @@ class TestQueue:
         captured = capsys.readouterr()
         queue.enqueue(20)
         captured = capsys.readouterr()
-        assert ("Элемент стал коцом очереди.") in captured.out
+        assert "Элемент стал концом очереди." in captured.out
         assert queue.front() == 10
         assert queue.size() == 2
 
