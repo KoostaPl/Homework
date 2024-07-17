@@ -1,5 +1,8 @@
 import unittest
-from homework5.bank import Bank, Client, Account, AccountNotFound, InsufficientFunds, CurrencyMismatch
+
+from homework5.bank import (Account, AccountNotFound, Bank, Client,
+                            CurrencyMismatch, InsufficientFunds)
+
 
 class TestClient(unittest.TestCase):
 
@@ -54,6 +57,6 @@ class TestClient(unittest.TestCase):
         self.assertEqual(usd_account1.balance, 50.0)
         self.assertEqual(usd_account2.balance, 50.0)
 
+
 if __name__ == "__main__":
     unittest.main()
-

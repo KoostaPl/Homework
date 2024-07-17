@@ -4,9 +4,9 @@
 # Шифр Цезаря - это подстановочный шифр, где каждая буква в исходном тексте
 # сдвигается вверх или вниз по алфавиту на N позиций.
 
-N = int(input('Введите цифру сдвига: '))
-text = input('Введите текст для шифрования: ')
+N = int(input("Введите цифру сдвига: "))
+text = input("Введите текст для шифрования: ")
 scripted_message = []
 for i in text:
     scripted_message.append(chr(ord(i) + N))
-print('Зашифрованное слово: ', ''.join(scripted_message))
+print("Зашифрованное слово: ", "".join(scripted_message))

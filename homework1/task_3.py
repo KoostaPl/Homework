@@ -1,2 +1,2 @@
-string = set(input('Введите строку: ').replace(' ', ''))
-print('Слово:', ''.join(sorted(string)))
+string = set(input("Введите строку: ").replace(" ", ""))
+print("Слово:", "".join(sorted(string)))

@@ -16,6 +16,7 @@ def binary_search(numbers, num):
 
     return -1
 
+
 user_input = input("Введите числа, разделенные пробелом: ").split()
 numbers = [int(i) for i in user_input]
 

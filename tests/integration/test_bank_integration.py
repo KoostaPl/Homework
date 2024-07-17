@@ -1,5 +1,7 @@
 import unittest
+
 from homework5.bank import Bank
+
 
 class TestBankIntegration(unittest.TestCase):
 
@@ -19,6 +21,7 @@ class TestBankIntegration(unittest.TestCase):
         self.bank.transfer("1", "USD", "2", "USD", 50.0)
         self.assertEqual(john_account.balance, 50.0)
         self.assertEqual(alice_account.balance, 50.0)
+
 
 if __name__ == "__main__":
     unittest.main()

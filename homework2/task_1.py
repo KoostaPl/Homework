@@ -3,11 +3,11 @@
 # разделены одним или большим числом пробелов или символами конца строки.
 # Определите, сколько уникальных слов содержится в этом тексте.
 
-text = input('Введите текст: ')
+text = input("Введите текст: ")
 words = text.split()
 unique_words = set()
 for word in words:
-    word.strip(',.!?')
+    word.strip(",.!?")
     unique_words.add(word)
-num_unique_words = (len(unique_words))
+num_unique_words = len(unique_words)
 print(f"Количество уникальных слов в тексте: {num_unique_words}")

@@ -1,5 +1,7 @@
 import unittest
+
 from homework5.bank import Account, InsufficientFunds
+
 
 class TestAccount(unittest.TestCase):
 
@@ -22,6 +24,7 @@ class TestAccount(unittest.TestCase):
         self.account.deposit(100.0)
         with self.assertRaises(InsufficientFunds):
             self.account.withdraw(150.0)
+
 
 if __name__ == "__main__":
     unittest.main()

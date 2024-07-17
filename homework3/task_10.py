@@ -7,7 +7,7 @@ import random
 
 N = random.randint(0, 100)
 A = 5
-print(N) 
+print(N)
 for i in range(A):
     num = int(input("Угадайте число: "))
     if num > N:

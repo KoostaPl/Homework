@@ -21,7 +21,8 @@ def merge_sorted_list(list1, list2):
         merged_list.append(list2[j])
         j += 1
     return merged_list
-    
+
+
 list1 = [1, 3, 5, 7]
 list2 = [2, 4, 6, 8]
 print(merge_sorted_list(list1, list2))
