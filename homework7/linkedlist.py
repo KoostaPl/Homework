@@ -4,6 +4,7 @@ class Node:
         self.next = None
         self.prev = None
 
+
 class LinkedListIterator:
     def __init__(self, start_node):
         self.current_node = start_node
@@ -17,6 +18,7 @@ class LinkedListIterator:
         data = self.current_node.data
         self.current_node = self.current_node.next
         return data
+
 
 class LinkedList:
     def __init__(self):

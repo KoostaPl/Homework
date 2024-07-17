@@ -1,6 +1,7 @@
+import pytest
 from stack import Stack
 
-import pytest 
+
 class TestStack:
     def test_push_to_empty_stack(self, capsys):
         stack = Stack()
@@ -62,12 +63,10 @@ class TestStack:
         assert stack.peek() == 30
         assert stack.size() == 3
 
-
     def test_is_empty_empty_stack(self):
         stack = Stack()
         assert stack.is_empty() is True
         assert stack.size() == 0
-
 
     def test_is_empty_non_empty_stack(self):
         stack = Stack()
@@ -75,12 +74,10 @@ class TestStack:
         assert stack.is_empty() is False
         assert stack.size() >= 1
 
-
     def test_size_empty_stack(self):
         stack = Stack()
         assert stack.size() == 0
         assert stack.is_empty() is True
-
 
     def test_size_non_empty_stack(self):
         stack = Stack()

@@ -72,7 +72,6 @@ class Queue:
         return QueueIterator(self._first_node)
 
 
-
 queue = Queue()
 queue.enqueue(10)
 queue.enqueue(20)

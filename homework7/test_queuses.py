@@ -1,6 +1,7 @@
+import pytest
 from queues import Queue
 
-import pytest 
+
 class TestQueue:
     def test_enqueue_empty_queue(self, capsys):
         queue = Queue()
@@ -19,14 +20,12 @@ class TestQueue:
         assert queue.front() == 10
         assert queue.size() == 2
 
-
     def test_dequeue_from_empty_queue(self):
         queue = Queue()
         with pytest.raises(IndexError):
             queue.dequeue()
 
-
-    def test_dequeue_from_one_element__queue(self,capsys):
+    def test_dequeue_from_one_element__queue(self, capsys):
         queue = Queue()
         queue.enqueue(10)
         queue.size() == 1
@@ -50,12 +49,10 @@ class TestQueue:
         assert queue.front() == 20
         assert queue.size() == 2
 
-
     def test_front_from_empty_queue(self):
         queue = Queue()
         with pytest.raises(IndexError):
             queue.front()
-
 
     def test_front_from_multiple_elements_queue(self):
         queue = Queue()
