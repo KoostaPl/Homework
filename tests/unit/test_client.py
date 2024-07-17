@@ -1,6 +1,6 @@
 import unittest
 
-from homework5.bank import (Account,  Bank)
+from homework5.bank import Account, Bank
 
 
 class TestClient(unittest.TestCase):

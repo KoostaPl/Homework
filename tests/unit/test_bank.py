@@ -1,7 +1,6 @@
 import unittest
 
-from homework5.bank import (Account, AccountNotFound, Bank, Client,
-                            CurrencyMismatch, InsufficientFunds)
+from homework5.bank import Bank, Client
 
 
 class TestBank(unittest.TestCase):
