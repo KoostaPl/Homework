@@ -4,6 +4,19 @@ class Node:
         self.next = None
         self.prev = None
 
+class LinkedListIterator:
+    def __init__(self, start_node):
+        self.current_node = start_node
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current_node is None:
+            raise StopIteration
+        data = self.current_node.data
+        self.current_node = self.current_node.next
+        return data
 
 class LinkedList:
     def __init__(self):
@@ -106,7 +119,6 @@ class LinkedList:
         return self._size
 
 
-# Пример использования
 linked_list = LinkedList()
 linked_list.append(10)
 linked_list.append(20)
@@ -117,3 +129,7 @@ print(f"Элемент на позиции 2: {linked_list[2]}")
 linked_list.delete(15)
 linked_list.display()
 print(f"Размер списка: {len(linked_list)}")
+
+# итерация
+for item in linked_list:
+    print(item)

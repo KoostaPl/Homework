@@ -29,7 +29,10 @@ class Stack:
         new_node.next = self._top_node
         self._top_node = new_node
         self._size += 1
-        print(f"Элемент {item} был добавлен в стек.")
+        if self._size == 1:
+            print("Новый элемент стал вершиной стека.")
+        else:
+            print("Элемент стал вершиной стека.")
 
     def pop(self):
         if self.is_empty():
@@ -67,7 +70,21 @@ stack = Stack()
 stack.push(10)
 stack.push(20)
 stack.push(30)
+stack.display()
+print(f"Верхний элемент: {stack.peek()}")
+print(f"Стек пуст: {stack.is_empty()}")
 stack.pop()
-print("Итерация по стеку:")
+stack.display()
+stack.pop()
+stack.display()
+stack.pop()
+stack.display()
+print(f"Стек пуст: {stack.is_empty()}")
+
+# итерация
+stack.push(10)
+stack.push(20)
+stack.push(30)
+
 for item in stack:
     print(item)
