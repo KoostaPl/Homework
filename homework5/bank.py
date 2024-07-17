@@ -5,11 +5,14 @@ from datetime import datetime
 class InsufficientFunds(Exception):
     pass
 
+
 class AccountNotFound(Exception):
     pass
 
+
 class CurrencyMismatch(Exception):
     pass
+
 
 class Account:
     def __init__(self, currency):
@@ -17,49 +20,63 @@ class Account:
         self.balance = 0.0
         self.transaction_history = []
 
-
     def deposit(self, amount):
-        if  amount <= 0 :
+        if amount <= 0:
             raise ValueError("Сумма должна быть положительной.")
         self.balance += amount
-        print(f"Счет в {self.currency} пополнен на {amount} {self.currency}. Текущий баланс: {self.balance} {self.currency}")
+        print(
+            f"Счет в {self.currency} пополнен на {amount} {self.currency}. "
+            f"Текущий баланс: {self.balance} {self.currency}"
+        )
         print("************************************************")
-        self.transaction_history.append(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Пополнение\переводы: +{amount} {self.currency}, текущий баланс {self.balance} {self.currency}")
+        self.transaction_history.append(
+            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} "
+            f"Пополнение\\переводы: +{amount} {self.currency}, "
+            f"текущий баланс {self.balance} {self.currency}"
+        )
 
     def withdraw(self, amount):
-        if 0 >= amount:
+        if amount <= 0:
             raise ValueError("Сумма должна быть положительной.")
         if amount > self.balance:
             raise InsufficientFunds("На счёте недостаточно средств.")
         self.balance -= amount
         print("************************************************")
-        print(f"Со счета в {self.currency} снято {amount} {self.currency}. Текущий баланс: {self.balance} {self.currency}")
+        print(
+            f"Со счета в {self.currency} снято {amount} {self.currency}. "
+            f"Текущий баланс: {self.balance} {self.currency}"
+        )
         print("************************************************")
-        self.transaction_history.append(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} Снятие\переводы: -{amount} {self.currency}, текущий баланс {self.balance} {self.currency}")
+        self.transaction_history.append(
+            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} "
+            f"Снятие\\переводы: -{amount} {self.currency}, "
+            f"текущий баланс {self.balance} {self.currency}"
+        )
 
     def get_transaction_history(self):
         return self.transaction_history
-    
+
     def to_dict(self):
         return {
-            'currency': self.currency,
-            'balance': self.balance,
-            'transaction_history': self.transaction_history
+            "currency": self.currency,
+            "balance": self.balance,
+            "transaction_history": self.transaction_history,
         }
-    
+
     @staticmethod
     def from_dict(data):
-        account = Account(data['currency'])
-        account.balance = data['balance']
-        account.transaction_history = data['transaction_history']
+        account = Account(data["currency"])
+        account.balance = data["balance"]
+        account.transaction_history = data["transaction_history"]
         return account
+
 
 class Client:
     def __init__(self, client_id, name):
         self.client_id = client_id
         self.name = name
         self.accounts = {}
-        
+
     def open_account(self, currency):
         if currency in self.accounts:
             raise ValueError("Счёт в этой валюте уже существует.")
@@ -69,7 +86,7 @@ class Client:
 
     def close_account(self, currency):
         if currency not in self.accounts:
-            raise AccountNotFound("Счёт в этой валюте не был найден.\n")
+            raise AccountNotFound("Счёт в этой валюте не был найден.")
         del self.accounts[currency]
         print(f"Счет в валюте {currency} закрыт для клиента {self.name}")
         print("************************************************")
@@ -78,9 +95,9 @@ class Client:
         if currency not in self.accounts:
             raise AccountNotFound("Счёт в этой валюте не был найден.")
         return self.accounts[currency]
-    
+
     def generate_statement(self):
-        statement = f"Выписка по счетам клиента {self.name} (ID: {self.client_id}):\n"
+        statement = f"Выписка клиента {self.name} (ID: {self.client_id}):\n"
         total_balance = 0.0
         for currency, account in self.accounts.items():
             statement += f"Валюта: {currency}, Баланс: {account.balance}\n"
@@ -88,12 +105,15 @@ class Client:
         statement += f"Общий баланс: {total_balance}\n"
 
         file_name = f"{self.client_id}_statement.txt"
-        with open(file_name, "w", encoding='utf-8') as file:
+        with open(file_name, "w", encoding="utf-8") as file:
             file.write(statement)
         print(f"Выписка сохранена в {file_name}")
 
     def get_transaction_history(self):
-        history = f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} История операций для клиента {self.name} (ID: {self.client_id}):\n"
+        history = (
+            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} "
+            f"История операций клиента {self.name} (ID: {self.client_id}):\n"
+        )
         for currency, account in self.accounts.items():
             print("*********************************************")
             history += f"\nСчёт в валюте {currency}:\n"
@@ -101,20 +121,27 @@ class Client:
             for transaction in account.get_transaction_history():
                 history += f"  - {transaction}\n"
         return history
-    
+
     def to_dict(self):
         return {
-            'client_id': self.client_id,
-            'name': self.name,
-            'accounts': {currency: account.to_dict() for currency, account in self.accounts.items()}
+            "client_id": self.client_id,
+            "name": self.name,
+            "accounts": {
+                currency: account.to_dict()
+                for currency, account in self.accounts.items()
+            },
         }
 
     @staticmethod
     def from_dict(data):
-        client = Client(data['client_id'], data['name'])
-        client.accounts = {currency: Account.from_dict(acc_data) for currency, acc_data in data['accounts'].items()}
+        client = Client(data["client_id"], data["name"])
+        client.accounts = {
+            currency: Account.from_dict(acc_data)
+            for currency, acc_data in data["accounts"].items()
+        }
         return client
-    
+
+
 class Bank:
     def __init__(self, clients=None):
         self.clients = clients if clients is not None else {}
@@ -131,8 +158,10 @@ class Bank:
         if client_id not in self.clients:
             raise ValueError("Клиент не найден")
         return self.clients[client_id]
-    
-    def transfer(self, from_client_id, from_currency, to_client_id, to_currency, amount):
+
+    def transfer(
+        self, from_client_id, from_currency, to_client_id, to_currency, amount
+    ):
         from_client = self.get_client(from_client_id)
         to_client = self.get_client(to_client_id)
 
@@ -140,32 +169,42 @@ class Bank:
         to_account = to_client.get_account(to_currency)
 
         if from_account.currency != to_account.currency:
-            raise CurrencyMismatch("Переводы между разными валютами запрещены.\n************************************************")
+            raise CurrencyMismatch("Переводы разнымх валют запрещены.")
 
         from_account.withdraw(amount)
         to_account.deposit(amount)
-        print("\n****************************************************************************")
-        print(f"Переведено {amount} {from_currency} из счета клиента {from_client.name} в {from_currency} в счет клиента {to_client.name} в {to_currency}")
-        print("\n****************************************************************************")
+        print("\n************************************************")
+        print(
+            f"Перевод {amount} {from_currency} со счета {from_client.name}"
+            f"в {from_currency} на счет {to_client.name} в {to_currency}"
+        )
+        print("************************************************")
 
-    def save_state(self, filename='bank_state.json'):
-        with open(filename, 'w', encoding='utf-8') as f:
+    def save_state(self, filename="bank_state.json"):
+        with open(filename, "w", encoding="utf-8") as f:
             json.dump(self.to_dict(), f, ensure_ascii=False, indent=4)
 
     @staticmethod
-    def load_state(filename='bank_state.json'):
+    def load_state(filename="bank_state.json"):
         try:
-            with open(filename, 'r', encoding='utf-8') as f:
+            with open(filename, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                clients = {client_id: Client.from_dict(client_data) for client_id, client_data in data['clients'].items()}
+                clients = {
+                    client_id: Client.from_dict(client_data)
+                    for client_id, client_data in data["clients"].items()
+                }
                 return Bank(clients)
         except FileNotFoundError:
             return Bank()
 
     def to_dict(self):
         return {
-            'clients': {client_id: client.to_dict() for client_id, client in self.clients.items()}
+            "clients": {
+                client_id: client.to_dict()
+                for client_id, client in self.clients.items()
+            }
         }
+
 
 def main():
     bank = Bank.load_state()
@@ -179,9 +218,8 @@ def main():
         print("3. Выйти из системы.")
         print("*********************************************")
         choice = input("Выберите опцию (1-3): ")
-        
 
-        if choice == '1':
+        if choice == "1":
             client_id = input("Введите ID клиента: ")
             name = input("Введите имя клиента: ")
             try:
@@ -236,7 +274,7 @@ def main():
                     print("************************************************")
                     currency = input("Введите валюту счета: ")
                     print("************************************************")
-                    amount = float(input("Введите сумму для пополнения счёта: "))
+                    amount = float(input("Сумма для пополнения счёта: "))
                     print("************************************************")
                     try:
                         account = client.get_account(currency)
@@ -248,25 +286,41 @@ def main():
                     print("************************************************")
                     currency = input("Введите валюту счета: ")
                     print("************************************************")
-                    amount = float(input("Введите сумму для снятия со счёта: "))
+                    amount = float(input("Сумма для снятия со счёта: "))
                     try:
                         account = client.get_account(currency)
                         account.withdraw(amount)
-                    except (AccountNotFound, InsufficientFunds, ValueError) as e:
-                        print(e) 
+                    except (
+                        AccountNotFound,
+                        InsufficientFunds,
+                        ValueError,
+                    ) as e:
+                        print(e)
 
-                elif action == '5':
+                elif action == "5":
                     print("************************************************")
-                    from_currency = input("Введите валюту счета, с которого переводите: ")
-                    to_client_id = input("Введите ID клиента, на который переводите: ")
-                    to_currency = input("Введите валюту счета, на который переводите: ")
+                    from_currency = input(
+                        "Введите валюту счета, с которого переводите: "
+                    )
+                    to_client_id = input("ID клиента к переводу: ")
+                    to_currency = input("Валюта счета к переводу: ")
                     amount = float(input("Введите сумму для перевода: "))
                     print("************************************************")
                     try:
-                        bank.transfer(client_id, from_currency, to_client_id, to_currency, amount)
-                    except (ValueError, AccountNotFound, CurrencyMismatch, InsufficientFunds) as e:
-                        print(e) 
-
+                        bank.transfer(
+                            client_id,
+                            from_currency,
+                            to_client_id,
+                            to_currency,
+                            amount,
+                        )
+                    except (
+                        ValueError,
+                        AccountNotFound,
+                        CurrencyMismatch,
+                        InsufficientFunds,
+                    ) as e:
+                        print(e)
 
                 elif action == "6":
                     try:
@@ -280,16 +334,15 @@ def main():
                 elif action == "8":
                     break
 
-                else: 
+                else:
                     print("************************************************")
                     print("Неверный выбор, попробуйте снова")
                     print("************************************************")
-              
-        
+
         elif choice == "3":
             bank.save_state()
             print("************************************************")
-            print("Вы успешно вышли из программы. Хорошего дня!.")
+            print("Вы успешно вышли из программы. Хорошего дня!")
             print("************************************************")
             break
 
@@ -297,6 +350,7 @@ def main():
             print("************************************************")
             print("Неверный выбор, попробуйте снова")
             print("************************************************")
+
 
 if __name__ == "__main__":
     main()
