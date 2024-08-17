@@ -1,0 +1,9 @@
+{
+    "clients": {
+        "& C:/Users/limon/AppData/Local/Programs/Python/Python311/python.exe c:/Users/limon/Desktop/Homework/tests/unit/test_client.py": {
+            "client_id": "& C:/Users/limon/AppData/Local/Programs/Python/Python311/python.exe c:/Users/limon/Desktop/Homework/tests/unit/test_client.py",
+            "name": "2",
+            "accounts": {}
+        }
+    }
+}
